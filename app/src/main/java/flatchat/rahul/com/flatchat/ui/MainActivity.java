@@ -34,22 +34,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private MessageListAdapter mAdapter;
     final String[] fromColumns = {DataBaseHandeler._id, DataBaseHandeler.MESSAGE_DATA, DataBaseHandeler.MESSAGE_TYPE};
     final int[] toViews = {R.id.message_id, R.id.message_type_text, R.id.message_time_stamp};
-    private ListView mMessageListView;
+        private ListView mMessageListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mMessageListView = (ListView) findViewById(R.id.message_list);
-        loadData();
+        final String URL="http://pastebin.com/raw.php?i=aqziuquq";
+        loadData(URL);
 
     }
 
-    private void loadData() {
+    private void loadData(String url) {
         //  final DataBaseHandeler dataBaseHandeler = new DataBaseHandeler(this);
         Log.i(TAG, "Load Data");
         final JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, "http://pastebin.com/raw.php?i=aqziuquq", null, new Response.Listener<JSONObject>() {
+                (Request.Method.GET,url , null, new Response.Listener<JSONObject>() {
 
                     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     @Override
